@@ -1,0 +1,11 @@
+version: "3.4"
+
+services:
+  http_proxy:
+    build:
+      context: .
+    command: gunicorn main:app_factory --reload -b :8000 --worker-class aiohttp.GunicornWebWorker
+    volumes:
+      - ./src:/app
+    ports:
+      - "8000:8000"
