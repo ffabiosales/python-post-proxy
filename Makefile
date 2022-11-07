@@ -3,3 +3,5 @@ run:
 	docker compose run --rm -p $(HTTP_PORT):$(HTTP_PORT) http_proxy 
 build: 
 	docker compose build
+test:
+	pytest
