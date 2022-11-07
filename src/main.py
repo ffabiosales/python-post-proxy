@@ -27,12 +27,12 @@ async def index(request):
     }
 
     token = jwt.encode(claims, JWT_SECRET, algorithm="HS512")
-
+    payload = await request.json()
     async with ClientSession() as session:
 
         async with session.post(
             POST_URL, 
-            data= await request.post(), 
+            data= payload, 
             headers={"x-my-jwt": token, "content-type": request.content_type}
             ) as resp:
                 response = await resp.json()
